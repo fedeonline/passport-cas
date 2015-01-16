@@ -111,8 +111,10 @@ Strategy.prototype.authenticate = function (req, options) {
     if (relayState) {
         // logout locally
         req.logout();
+        //return this.redirect(this.ssoBase + '/logout?_eventId=next&RelayState=' +
+        //    relayState);
         return this.redirect(this.ssoBase + '/logout?_eventId=next&RelayState=' +
-            relayState);
+        relayState+'&gateway=true&service='+this.serverBaseURL);
     }
 
     var service = this.service(req);
